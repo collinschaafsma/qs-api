@@ -1,0 +1,52 @@
+{
+  "name": "qs-api",
+  "version": "1.0.0",
+  "description": "Quantified Self API for tracking all the things",
+  "main": "dist/app.js",
+  "scripts": {
+    "dev": "nodemon --watch 'src/**/*' -e ts,tsx --exec ts-node src/app.ts",
+    "build-ts": "tsc",
+    "tslint": "tslint -c tslint.json -p tsconfig.json",
+    "start": "node dist/app.js",
+    "build": "npm run tslint && npm run build-ts",
+    "test": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/collinschaafsma/qs-api.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/collinschaafsma/qs-api/issues"
+  },
+  "homepage": "https://github.com/collinschaafsma/qs-api#readme",
+  "devDependencies": {
+    "@types/dotenv": "^4.0.3",
+    "@types/jest": "^23.3.9",
+    "@types/koa": "^2.0.46",
+    "@types/koa-bodyparser": "^5.0.1",
+    "@types/koa-helmet": "^3.1.2",
+    "@types/koa-jwt": "^3.3.0",
+    "@types/koa-router": "^7.0.32",
+    "@types/node": "^10.12.2",
+    "jest": "^23.6.0",
+    "nodemon": "^1.18.5",
+    "ts-jest": "^23.10.4",
+    "ts-loader": "^5.3.0",
+    "ts-node": "^7.0.1",
+    "tslint": "^5.11.0",
+    "typescript": "^3.1.6"
+  },
+  "dependencies": {
+    "dotenv": "^6.1.0",
+    "koa": "^2.6.1",
+    "koa-bodyparser": "^4.2.1",
+    "koa-helmet": "^4.0.0",
+    "koa-jwt": "^3.5.1",
+    "koa-router": "^7.4.0",
+    "pg": "^7.6.0",
+    "pg-connection-string": "^2.0.0",
+    "typeorm": "^0.2.8"
+  }
+}
