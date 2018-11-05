@@ -9,8 +9,8 @@
     "tslint": "tslint -c tslint.json -p tsconfig.json",
     "start": "node dist/app.js",
     "build": "npm run tslint && npm run build-ts",
-    "test": "",
-    "test-watch": "jest --watch"
+    "test": "jest --coverage --forceExit --config jest-config.json",
+    "test-watch": "jest --watch --config jest-config.json"
   },
   "repository": {
     "type": "git",
