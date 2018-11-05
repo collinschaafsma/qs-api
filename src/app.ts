@@ -1,10 +1,13 @@
 import * as Koa from 'koa';
 import * as bodyParser from 'koa-bodyparser';
 import * as helmet from 'koa-helmet';
+import * as winston from 'winston';
 
 export const app = new Koa();
 
+import { logger } from './logger';
 import { router } from './routes';
+
 
 app
     .use(helmet())
@@ -12,6 +15,7 @@ app
     .use(router.routes());
 
 function startFunction() {
+    logger.log('info', 'App running on port %d', 3000);
     app.listen(3000);
 }
 
