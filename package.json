@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Quantified Self API for tracking all the things",
   "main": "dist/app.js",
+  "engines": {
+    "node": "11.1.0"
+  },
   "scripts": {
     "dev": "nodemon --watch 'src/**/*' -e ts,tsx --exec ts-node src/app.ts",
     "build-ts": "tsc",
