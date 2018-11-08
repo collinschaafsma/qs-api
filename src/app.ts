@@ -12,7 +12,7 @@ import { router } from './routes';
 app
     .use(helmet())
     .use(bodyParser())
-    .use(router.routes());
+    .use(router.routes()).use(router.allowedMethods());
 
 if (process.env.NODE_ENV === 'production') {
     app.use(enforceHttps({trustProtoHeader: true}));
