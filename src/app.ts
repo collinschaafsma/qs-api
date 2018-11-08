@@ -34,6 +34,6 @@ function startApp() {
 }
 
 // Don't start the app if we are importing app from our test runner
-if (require.main === module) {
+if (!module.parent) {
     startApp();
 }
