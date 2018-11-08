@@ -1,6 +1,7 @@
 import * as Koa from 'koa';
 import * as bodyParser from 'koa-bodyparser';
 import * as helmet from 'koa-helmet';
+import * as enforceHttps from 'koa-sslify';
 
 export const app = new Koa();
 
@@ -12,6 +13,10 @@ app
     .use(helmet())
     .use(bodyParser())
     .use(router.routes());
+
+if (process.env.NODE_ENV === 'production') {
+    app.use(enforceHttps({trustProtoHeader: true}));
+}
 
 function startApp() {
     logger.log('info', 'App running on port %d', config.port);
