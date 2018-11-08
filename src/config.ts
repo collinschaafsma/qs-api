@@ -2,11 +2,11 @@ import * as dotenv from 'dotenv';
 
 dotenv.config();
 
-export interface IAppConfig {
+export interface IConfig {
     port: number;
 }
 
-const config: IAppConfig = {
+const config: IConfig = {
     port: +process.env.PORT || 3000,
 };
 
