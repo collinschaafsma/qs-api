@@ -1,5 +1,6 @@
 import * as Koa from 'koa';
 import * as bodyParser from 'koa-bodyparser';
+import * as cors from '@koa/cors';
 import * as helmet from 'koa-helmet';
 import * as enforceHttps from 'koa-sslify';
 
@@ -12,6 +13,7 @@ import { router } from './routes';
 app
     .use(helmet())
     .use(bodyParser())
+    .use(cors())
     .use(router.routes()).use(router.allowedMethods());
 
 if (process.env.NODE_ENV === 'production') {
