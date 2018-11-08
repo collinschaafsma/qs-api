@@ -3,6 +3,6 @@ import { BaseContext } from 'koa';
 export default class MainController {
 
     public static async helloWorld(ctx: BaseContext) {
-        ctx.body = 'QS API';
+        ctx.body = { app: 'QS API' };
     }
 }
