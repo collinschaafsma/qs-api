@@ -27,15 +27,15 @@ function startApp() {
     app.listen(config.port);
 }
 
+app
+    .use(helmet())
+    .use(bodyParser())
+    .use(cors())
+    .use(enforceHttps(ssl({trustProtoHeader: true})))
+    .use(router.routes()).use(router.allowedMethods());
+
 mongoose.connect(config.databaseUrl, { useNewUrlParser: true })
     .then(async () => {
-        app
-            .use(helmet())
-            .use(bodyParser())
-            .use(cors())
-            .use(enforceHttps(ssl({trustProtoHeader: true})))
-            .use(router.routes()).use(router.allowedMethods());
-
         // Don't start the app if we are importing app from our test runner
         if (!module.parent) { startApp(); }
     })
