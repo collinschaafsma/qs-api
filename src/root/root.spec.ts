@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 
 const agent = request.agent(app.listen());
 
-describe('Main', () => {
+describe('Root', () => {
   // beforeAll(() => {
   //   mongoose.connection.on('open');
   // });

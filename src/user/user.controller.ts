@@ -1,9 +1,12 @@
 import { Context } from 'koa';
+import { IUser, User } from './user.model';
 
 export default class UserController {
 
     public static async getUsers(ctx: Context) {
-        ctx.body = 'User index';
+        const users: IUser[] = await User.find();
+        ctx.status = 200;
+        ctx.body = users;
     }
 
     public static async getUser(ctx: Context) {

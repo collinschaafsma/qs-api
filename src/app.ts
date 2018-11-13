@@ -5,9 +5,12 @@ import * as helmet from 'koa-helmet';
 import * as ssl from 'koa-sslify';
 import * as mongoose from 'mongoose';
 
-import { config } from './config';
-import { logger } from './logger';
-import { router } from './routes';
+import { config } from './service/config';
+import { logger } from './service/logger';
+
+// Routes
+import { rootRouter } from './root/root.router';
+import { userRouter } from './user/user.router';
 
 export const app = new Koa();
 
@@ -32,7 +35,10 @@ app
     .use(bodyParser())
     .use(cors())
     .use(enforceHttps(ssl({trustProtoHeader: true})))
-    .use(router.routes()).use(router.allowedMethods());
+    .use(rootRouter.routes())
+    .use(rootRouter.allowedMethods())
+    .use(userRouter.routes())
+    .use(userRouter.allowedMethods());
 
 mongoose.connect(config.databaseUrl, { useNewUrlParser: true })
     .then(async () => {
