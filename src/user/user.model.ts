@@ -1,4 +1,5 @@
 import { Document, Model, model, Schema } from 'mongoose';
+import * as uniqueValidator from 'mongoose-unique-validator';
 
 export interface IUser extends Document {
     email: string;
@@ -12,8 +13,11 @@ export const userSchema: Schema = new Schema({
         type: Date,
     },
     email: {
+        index: true,
         required: true,
         type: String,
+        unique: true,
+        uniqueCaseInsensitive: true,
     },
     name: {
         required: true,
@@ -29,10 +33,6 @@ export const userSchema: Schema = new Schema({
     },
 });
 
-// userSchema.static('createUser', (user: IUser) => {
-//     const hash = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10));
-//     user.password = hash;
-//     user.save();
-// });
+userSchema.plugin(uniqueValidator);
 
 export const User: Model<IUser> = model<IUser>('User', userSchema);
