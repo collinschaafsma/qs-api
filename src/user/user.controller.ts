@@ -5,7 +5,7 @@ import { default as userService } from './user.service';
 export default class UserController {
 
   public static async getUsers(ctx: Context) {
-    const users: IUser[] = await User.find();
+    const users: IUser[] = await userService.getUsers();
     ctx.status = 200;
     ctx.body = users;
   }

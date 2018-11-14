@@ -10,10 +10,14 @@ export default class UserService {
       password: hash,
     });
 
-    return newUser.save();
+    return await newUser.save();
   }
 
   public static async getUser(id: string) {
     return await User.findById(id);
+  }
+
+  public static async getUsers() {
+    return await User.find();
   }
 }
