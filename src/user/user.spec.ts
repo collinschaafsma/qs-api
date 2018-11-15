@@ -17,28 +17,30 @@ describe('User', () => {
   });
 
   describe('GET /users/:id', () => {
-    it('should return a user', () => {
+    it('should return a user', async () => {
       const newUser: IUser = new User({
         email: 'test@test.com',
         name: 'Collin',
         password: 'passw0rd',
       });
 
-      newUser.save();
+      await newUser.save();
 
       return agent
         .get('/users/' + newUser._id)
         .set('Accept', 'application/json')
         .expect(200)
         .then((response) => {
-          expect(response.body.email).toContain('test@test.com');
+          const dataKeys = Object.keys(response.body);
+          const expected = ['name', 'email', 'password', 'createdAt', 'updatedAt', '_id'];
+          expect(dataKeys).toEqual(expect.arrayContaining(expected));
         });
     });
   });
 
   describe('POST /users', () => {
-    it('POST should respond in a 201 status', () => {
-      return agent
+    it('POST should respond in a 201 status', async () => {
+      return await agent
         .post('/users')
         .send({name: 'Collin Schaafsma'})
         .send({email: 'something@somthing.com'})
@@ -47,14 +49,14 @@ describe('User', () => {
         .expect(201);
     });
 
-    it('Dup email should respond in a 400 status', () => {
+    it('Dup email should respond in a 400 status', async () => {
       const newUser: IUser = new User({
         email: 'dup@dup.com',
         name: 'Collin',
         password: 'passw0rd',
       });
 
-      newUser.save();
+      await newUser.save();
 
       return agent
         .post('/users')
